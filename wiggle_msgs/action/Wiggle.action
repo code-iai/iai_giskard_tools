@@ -1,0 +1,20 @@
+# goal
+int32 X=1
+int32 Y=2
+int32 X_Y=3
+int32 ANGLE=4
+int32 X_ANGLE=5
+int32 Y_ANGLE=6
+int32 X_Y_ANGLE=7
+int32 LEFT_ARM=1
+int32 RIGHT_ARM=2
+int32 wiggle_type
+int32 arm
+geometry_msgs/PoseStamped goal_pose
+std_msgs/Duration timeout
+---
+# result
+float32 progress # in percent
+---
+# feedback
+float32 progress # in percent
