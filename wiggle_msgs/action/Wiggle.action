@@ -10,6 +10,10 @@ int32 LEFT_ARM=1
 int32 RIGHT_ARM=2
 int32 wiggle_type
 int32 arm
+float32 upperbound_x
+float32 upperbound_y
+float32 upperbound_angle
+float32 cycle_time
 geometry_msgs/PoseStamped goal_pose
 std_msgs/Duration timeout
 ---
