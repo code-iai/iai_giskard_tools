@@ -195,7 +195,7 @@ class WIGGLE(object):
         return np.sin(i * self.steps_size + offset) * amplitude
 
     def angular_wiggle(self, i, angle, offset=0):
-        return quaternion_about_axis(-np.sin(i * self.steps_size + offset) * angle, (0, 0, -1))
+        return quaternion_about_axis(-np.sin(i * self.steps_size*2 + offset) * angle, (0, 0, -1))
 
 
 if __name__ == '__main__':
