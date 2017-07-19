@@ -20,5 +20,25 @@
   (or *wiggle-action-client*
    (init-wiggle-action-client)))
 
-(defun make-wiggle-action-goal (goal-pose)
-  (cl-transforms-stamped:to-msg goal-pose))
+(defun wiggle-feedback-cb (msg)
+          (roslisp:with-fields (progress)
+              msg
+            (format t "~a~%" progress)))
+
+(defun make-wiggle-action-goal (goal-pose timeout-value arm-value wiggle-type-value upperbound-x-value upperbound-y-value upperbound-angle-value cycle-time)
+  (actionlib:make-action-goal
+   (get-wiggle-action-client)
+   GOAL_POSE (cl-transforms-stamped:to-msg goal-pose)
+   TIMEOUT (roslisp:make-msg "std_msgs/Duration" (data) timeout-value)
+   ARM arm-value
+   WIGGLE_TYPE wiggle-type-value
+   UPPERBOUND_X upperbound-x-value
+   UPPERBOUND_Y upperbound-y-value
+   UPPERBOUND_ANGLE upperbound-angle-value
+   CYCLE_TIME cycle-time))
+
+(defun perform-wiggle-action (goal-pose timeout-value arm-value wiggle-type-value upperbound-x-value upperbound-y-value upperbound-angle-value cycle-time)
+  (actionlib:call-goal
+   (get-wiggle-action-client)
+   (make-wiggle-action-goal goal-pose timeout-value arm-value wiggle-type-value upperbound-x-value upperbound-y-value upperbound-angle-value cycle-time)
+   :feedback-cb 'wiggle-feedback-cb ))
