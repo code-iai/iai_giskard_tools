@@ -1,14 +1,6 @@
 # goal
-int32 X=1
-int32 Y=2
-int32 X_Y=3
-int32 ANGLE=4
-int32 X_ANGLE=5
-int32 Y_ANGLE=6
-int32 X_Y_ANGLE=7
-int32 LEFT_ARM=1
-int32 RIGHT_ARM=2
-int32 wiggle_type
+int32 LEFT_ARM=0
+int32 RIGHT_ARM=1
 int32 arm
 float32 upperbound_x
 float32 upperbound_y
