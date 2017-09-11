@@ -16,7 +16,6 @@ from giskard_msgs.msg._ArmCommand import ArmCommand
 from giskard_msgs.msg._SemanticFloat64 import SemanticFloat64
 from giskard_msgs.msg._WholeBodyCommand import WholeBodyCommand
 from std_msgs.msg._Header import Header
-from tf.transformations import quaternion_about_axis, quaternion_multiply
 from tf2_geometry_msgs.tf2_geometry_msgs import do_transform_pose
 from tf2_ros.buffer import Buffer
 from tf2_ros.transform_listener import TransformListener
@@ -35,8 +34,6 @@ class WIGGLE(object):
         self.is_giskard_active = False
 
         self.giskard_goals = rospy.Publisher('/whole_body_controller/goal', WholeBodyCommand, queue_size=10)
-        # self.giskard_client = actionlib.SimpleActionClient('controller_action_server/move', WholeBodyAction)
-        # self.giskard_client.wait_for_server()
         self.pose_pub = rospy.Publisher('/test', PoseStamped, queue_size=10)
         self.wiggle_counter = 0.
         self.tfBuffer = Buffer()
@@ -209,21 +206,4 @@ if __name__ == '__main__':
     rospy.init_node('wiggle_action_server', anonymous=True)
     w = WIGGLE()
     print('wiggle action server is running.')
-    # goal = WiggleGoal()
-    # goal.arm = WiggleGoal.LEFT_ARM
-    # goal.goal_pose.header.frame_id = 'left_gripper_tool_frame'
-    # goal.goal_pose.pose.orientation.w = 1
-    # goal.goal_pose.pose.position.z = -0.1
-    # w.wiggle_cb(goal)
-
     rospy.spin()
-    # radius = 2
-    # p = w.spiral_round(radius, -0.2, 20)
-    # p = w.create_spiral()
-
-    # fig = plt.figure()
-    # ax = fig.gca(projection='3d')
-    # ax.plot(p[:,0], p[:,1], p[:,2], label='parametric curve')
-    # ax.legend()
-
-    # plt.show()
